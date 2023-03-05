@@ -18,6 +18,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Music Service</title>
   </head>
@@ -25,11 +30,11 @@
   <body>
     <div class="container background-container">
       <div class="col-sm-12 title">
-        <h1>TASTE</h1>
-        <h3>
+        <h1 class="h1">taste</h1>
+        <h2 class="h2">
           ENGAGE <br />IN <br />
           ART
-        </h3>
+        </h2>
       </div>
 
       <img class="background" src="images/background.jpg" alt="" />
@@ -44,6 +49,25 @@
       </div>
     </div>
 
+    <div id="pages">
+      <section id="home">
+        <div class="home-wrapper container"></div>
+      </section>
+      <section id="search">
+        <div class="search-wrapper container"></div>
+      </section>
+      <section id="discover">
+        <div class="discover-wrapper container"></div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <h3 class="h3">All rights reserved</h3>
+    </div>
+
+    <script id="template-home-page" type="text/x-handlebars-template"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="js/app.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
