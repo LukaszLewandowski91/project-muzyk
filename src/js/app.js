@@ -1,5 +1,6 @@
 import { classNames, select, settings } from './settings.js';
 import HomePage from './components/HomePage.js';
+import AudioPlayer from './components/AudioPlayer.js';
 const app = {
   initPages: function () {
     const thisApp = this;
@@ -50,7 +51,7 @@ const app = {
 
     thisApp.data = {};
     const url = settings.db.url + '/' + settings.db.songs;
-
+    thisApp.specifyData = {};
     fetch(url)
       .then(function (rawResponse) {
         return rawResponse.json();
@@ -60,15 +61,50 @@ const app = {
 
         thisApp.data.songs = parsedResponse;
 
-        console.log(thisApp.data.songs);
+        for (let songId in thisApp.data.songs) {
+          const song = thisApp.data.songs[songId];
 
-        /* tutaj dodac wywolanie HOME */
-        for (let songData in thisApp.data.songs) {
+          let authorName = thisApp.data.songs[songId].filename.replaceAll(
+            '_',
+            ' '
+          );
+
+          authorName = authorName.toUpperCase();
+          authorName = authorName.replace(
+            thisApp.data.songs[songId].title.toUpperCase(),
+            ''
+          );
+
+          authorName = authorName.replace('-', '');
+          authorName = authorName.trim();
+
+          authorName = authorName.replace('.MP3', '');
+          authorName = authorName.toLowerCase();
+          authorName = authorName.split(' ');
+
+          for (let i = 0; i < authorName.length; i++) {
+            authorName[i] =
+              authorName[i].charAt(0).toUpperCase() + authorName[i].slice(1);
+          }
+
+          thisApp.specifyData[songId] = {
+            id: song.id,
+            title: song.title,
+            author: authorName.join(' '),
+            filename: song.filename,
+            categories: song.categories.join(', '),
+            ranking: song.ranking,
+          };
+        }
+
+        for (let songData in thisApp.specifyData) {
           new HomePage(
-            thisApp.data.songs[songData].id,
-            thisApp.data.songs[songData]
+            thisApp.specifyData[songData].id,
+            thisApp.specifyData[songData]
           );
         }
+
+        new AudioPlayer(select.containerOf.music);
       });
   },
   init: function () {

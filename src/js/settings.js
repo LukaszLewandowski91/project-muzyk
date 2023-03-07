@@ -11,6 +11,9 @@ export const select = {
   nav: {
     links: '.main-nav a',
   },
+  song: {
+    categories: '.categories',
+  },
 };
 
 export const classNames = {
