@@ -1,3 +1,7 @@
+.menu-nav {
+  margin-top: ($base-size * 5);
+}
+
 .section-main {
   background: $color-black;
   margin-top: 20px;
@@ -10,8 +14,8 @@
     color: $color-grey;
     text-decoration: none;
     font-size: $font-semibold;
-    font-size: 20px;
-    margin: 0 60px;
+    font-size: 30px;
+    margin: 0 90px;
   }
 }
 

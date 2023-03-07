@@ -1,5 +1,5 @@
-import { classNames, select } from './settings.js';
-
+import { classNames, select, settings } from './settings.js';
+import HomePage from './components/HomePage.js';
 const app = {
   initPages: function () {
     const thisApp = this;
@@ -45,10 +45,37 @@ const app = {
       );
     }
   },
+  initData: function () {
+    const thisApp = this;
+
+    thisApp.data = {};
+    const url = settings.db.url + '/' + settings.db.songs;
+
+    fetch(url)
+      .then(function (rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+
+        thisApp.data.songs = parsedResponse;
+
+        console.log(thisApp.data.songs);
+
+        /* tutaj dodac wywolanie HOME */
+        for (let songData in thisApp.data.songs) {
+          new HomePage(
+            thisApp.data.songs[songData].id,
+            thisApp.data.songs[songData]
+          );
+        }
+      });
+  },
   init: function () {
     const thisApp = this;
     console.log('*** App starting ***');
     thisApp.initPages();
+    thisApp.initData();
   },
 };
 

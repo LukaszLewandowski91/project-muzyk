@@ -15,3 +15,24 @@
   color: $color-white;
   letter-spacing: 2px;
 }
+
+.authorSize {
+  font-size: 30px;
+  font-weight: $font-semibold;
+  text-transform: uppercase;
+  color: $color-white;
+  letter-spacing: 7.5px;
+}
+
+.titleSize {
+  font-size: 30px;
+  font-weight: $font-semibold;
+  color: $color-white;
+  letter-spacing: 7.5px;
+}
+
+.categories {
+  font-size: 20px;
+  font-weight: $font-normal;
+  color: $color-grey;
+}

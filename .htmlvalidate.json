@@ -3,6 +3,7 @@
 
   "rules": {
     "close-order": "error",
-    "void-style": ["warn", { "style": "selfclosing" }]
+    "void-style": ["warn", { "style": "selfclosing" }],
+    "element-permitted-content": "warn"
   }
 }
