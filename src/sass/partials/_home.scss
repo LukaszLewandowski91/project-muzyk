@@ -25,3 +25,7 @@
   justify-content: space-around;
   margin-top: ($base-size * 2);
 }
+
+.green-audio-player .slider .gap-progress .pin {
+  background-color: $color-red;
+}
