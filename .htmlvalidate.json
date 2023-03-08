@@ -4,6 +4,7 @@
   "rules": {
     "close-order": "error",
     "void-style": ["warn", { "style": "selfclosing" }],
-    "element-permitted-content": "warn"
+    "element-permitted-content": "warn",
+    "prefer-native-element": "warn"
   }
 }

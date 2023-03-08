@@ -35,3 +35,33 @@
   font-weight: $font-normal;
   color: $color-grey;
 }
+
+.subsribe-h1 {
+  font-size: 100px;
+  font-weight: $font-normal;
+  text-transform: uppercase;
+  letter-spacing: 20pt;
+  color: $color-white;
+}
+
+.subsribe-span {
+  font-size: 100px;
+  font-weight: $font-black;
+  text-transform: uppercase;
+  letter-spacing: 20pt;
+  color: $color-white;
+}
+
+.subsribe-firstname {
+  font-size: 100px;
+  font-weight: $font-black;
+  letter-spacing: 20pt;
+  color: $color-white;
+}
+
+.subsribe-lastname {
+  font-size: 100px;
+  font-weight: $font-black;
+  letter-spacing: 20pt;
+  color: $color-white;
+}

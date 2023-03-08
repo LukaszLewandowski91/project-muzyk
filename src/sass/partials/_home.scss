@@ -29,3 +29,93 @@
 .green-audio-player .slider .gap-progress .pin {
   background-color: $color-red;
 }
+
+.subscribe {
+  margin-top: 10%;
+  margin-bottom: 2%;
+}
+
+.subscribe-container {
+  display: flex;
+  justify-content: center;
+}
+
+.splash {
+  position: absolute;
+
+  h1 {
+    transform: translateY(-110%);
+  }
+}
+
+.splash-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    transform: translate(12%, -16%);
+  }
+}
+
+.btn {
+  background-color: $color-red;
+  border-color: $color-red;
+  font-size: 40px;
+  font-weight: $font-bold;
+  letter-spacing: 10px;
+}
+
+.btn:hover {
+  background-color: $color-red;
+  border-color: $color-red;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+}
+
+.image h1 {
+  position: absolute;
+  color: $color-white;
+  transform: translate(-80%, -70%);
+}
+
+.image .lastname h1 {
+  position: absolute;
+  transform: translate(-130%, -70%);
+  margin-top: 33px;
+}
+
+.redLastname {
+  color: $color-red;
+}
+
+.album-description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: right;
+  transform: translate(10%, -60%);
+
+  h3 {
+    width: 100%;
+    font-size: 40px;
+    font-weight: $font-bold;
+    color: $color-grey;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    text-align: right;
+  }
+
+  span {
+    width: 100%;
+    font-size: 40px;
+    font-weight: $font-normal;
+    color: $color-white;
+    letter-spacing: 10px;
+    text-align: right;
+  }
+}

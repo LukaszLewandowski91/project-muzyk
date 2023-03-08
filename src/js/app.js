@@ -106,6 +106,10 @@ const app = {
 
         new AudioPlayer(select.containerOf.music);
       });
+
+    const image = '<img src="images/subsribe.jpg" />';
+    const imageContainer = document.querySelector(select.containerOf.subscribe);
+    imageContainer.appendChild(image);
   },
   init: function () {
     const thisApp = this;

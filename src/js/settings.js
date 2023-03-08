@@ -7,6 +7,7 @@ export const select = {
     pages: '#pages',
     homePage: '.home-wrapper',
     music: '.music',
+    subscribe: '.container-subscribe',
   },
   nav: {
     links: '.main-nav a',
