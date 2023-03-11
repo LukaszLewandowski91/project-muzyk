@@ -3,6 +3,15 @@ import HomePage from './components/HomePage.js';
 import AudioPlayer from './components/AudioPlayer.js';
 import Song from './components/Song.js';
 const app = {
+  initSearch: function () {
+    const thisApp = this;
+
+    thisApp.buttonSearch = document.querySelector(select.button.search);
+
+    thisApp.buttonSearch.addEventListener('submit', function (event) {
+      event.preventDefault();
+    });
+  },
   initPages: function () {
     const thisApp = this;
 
@@ -85,6 +94,7 @@ const app = {
     console.log('*** App starting ***');
     thisApp.initPages();
     thisApp.initData();
+    thisApp.initSearch();
   },
 };
 

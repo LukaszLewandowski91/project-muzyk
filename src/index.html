@@ -94,8 +94,9 @@
             <div class="input-details">
               <p>Name</p>
               <input type="text" />
-              <button class="my-btn" type="submit">SEARCH</button>
+              <button class="my-btn buttonSearch" type="submit">SEARCH</button>
             </div>
+            <h1 class="founder-song">We have</h1>
           </div>
         </div>
       </section>
@@ -109,6 +110,28 @@
     </div>
 
     <script id="template-home-page" type="text/x-handlebars-template">
+      <div class='song-container'>
+        <h1>
+          <span class='authorSize'>{{author}} - </span><span
+            class='titleSize'
+          >{{title}}</span>
+        </h1>
+        <div class='music player'>
+          <audio>
+            <source src='songs/{{filename}}' />
+          </audio>
+        </div>
+        <div class='categories-box'>
+
+          <p class='categories'>Categories:
+            {{categories}}
+          </p>
+
+          <p class='categories'>#{{ranking}} in the ranking</p>
+        </div>
+      </div>
+    </script>
+    <script id="template-search-page" type="text/x-handlebars-template">
       <div class='song-container'>
         <h1>
           <span class='authorSize'>{{author}} - </span><span
