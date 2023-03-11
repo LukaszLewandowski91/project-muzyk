@@ -1,6 +1,7 @@
 import { classNames, select, settings } from './settings.js';
 import HomePage from './components/HomePage.js';
 import AudioPlayer from './components/AudioPlayer.js';
+import Song from './components/Song.js';
 const app = {
   initPages: function () {
     const thisApp = this;
@@ -64,37 +65,9 @@ const app = {
         for (let songId in thisApp.data.songs) {
           const song = thisApp.data.songs[songId];
 
-          let authorName = thisApp.data.songs[songId].filename.replaceAll(
-            '_',
-            ' '
-          );
+          const authorName = new Song(song);
 
-          authorName = authorName.toUpperCase();
-          authorName = authorName.replace(
-            thisApp.data.songs[songId].title.toUpperCase(),
-            ''
-          );
-
-          authorName = authorName.replace('-', '');
-          authorName = authorName.trim();
-
-          authorName = authorName.replace('.MP3', '');
-          authorName = authorName.toLowerCase();
-          authorName = authorName.split(' ');
-
-          for (let i = 0; i < authorName.length; i++) {
-            authorName[i] =
-              authorName[i].charAt(0).toUpperCase() + authorName[i].slice(1);
-          }
-
-          thisApp.specifyData[songId] = {
-            id: song.id,
-            title: song.title,
-            author: authorName.join(' '),
-            filename: song.filename,
-            categories: song.categories.join(', '),
-            ranking: song.ranking,
-          };
+          thisApp.specifyData[songId] = authorName.specifyData;
         }
 
         for (let songData in thisApp.specifyData) {
@@ -106,7 +79,6 @@ const app = {
 
         new AudioPlayer(select.containerOf.music);
       });
-
   },
   init: function () {
     const thisApp = this;
