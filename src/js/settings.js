@@ -8,8 +8,10 @@ export const select = {
     pages: '#pages',
     homePage: '.home-wrapper',
     music: '.music',
+    musicOnSearch: '.music-search',
     subscribe: '.container-subscribe',
-    searchPage: 'search-wrapper',
+    searchPage: '.search-wrapper',
+    containerMusic: '.searching',
   },
   nav: {
     links: '.main-nav a',
@@ -19,6 +21,8 @@ export const select = {
   },
   button: {
     search: '.buttonSearch',
+    text: '.fragmentText',
+    valueSong: '.founder-song',
   },
 };
 

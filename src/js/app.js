@@ -2,14 +2,66 @@ import { classNames, select, settings } from './settings.js';
 import HomePage from './components/HomePage.js';
 import AudioPlayer from './components/AudioPlayer.js';
 import Song from './components/Song.js';
+import SearchPage from './components/SearchPage.js';
 const app = {
   initSearch: function () {
     const thisApp = this;
 
     thisApp.buttonSearch = document.querySelector(select.button.search);
+    thisApp.inputText = document.querySelector(select.button.text);
+    thisApp.valueSong = document.querySelector(select.button.valueSong);
 
-    thisApp.buttonSearch.addEventListener('submit', function (event) {
+    thisApp.buttonSearch.addEventListener('click', function (event) {
       event.preventDefault();
+      thisApp.containerSong = document.querySelectorAll(
+        select.containerOf.containerMusic
+      );
+      if (
+        typeof thisApp.containerSong != 'undefined' &&
+        thisApp.containerSong != null
+      ) {
+        console.log(thisApp.containerSong.length);
+        for (var i = 0; i < thisApp.containerSong.length; i++) {
+          thisApp.containerSong[i].parentNode.removeChild(
+            thisApp.containerSong[i]
+          );
+          thisApp.valueSong.innerHTML = '';
+        }
+      }
+
+      const fragmentSearch = thisApp.inputText.value.toLowerCase();
+
+      if (fragmentSearch == '') {
+        alert('Wprowadź wartość do wyszukania');
+      } else {
+        let valueSong = 0;
+
+        for (let songId in thisApp.data.songs) {
+          const song = thisApp.data.songs[songId];
+
+          const authorName = new Song(song);
+          console.log(authorName.specifyData.fullName);
+          if (
+            authorName.specifyData.fullName
+              .toLowerCase()
+              .includes(fragmentSearch)
+          ) {
+            new SearchPage(authorName.specifyData.id, authorName.specifyData);
+            valueSong++;
+          }
+        }
+
+        if (valueSong == 0) {
+          thisApp.valueSong.innerHTML = 'We don\'t have any song :(';
+        } else if (valueSong == 1) {
+          thisApp.valueSong.innerHTML = 'We have found 1 song...';
+        } else {
+          thisApp.valueSong.innerHTML =
+            'We have found ' + valueSong + ' songs...';
+        }
+
+        new AudioPlayer(select.containerOf.musicOnSearch);
+      }
     });
   },
   initPages: function () {

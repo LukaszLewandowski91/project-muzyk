@@ -93,10 +93,10 @@
             </div>
             <div class="input-details">
               <p>Name</p>
-              <input type="text" />
-              <button class="my-btn buttonSearch" type="submit">SEARCH</button>
+              <input class="fragmentText" type="text" />
+              <button class="my-btn buttonSearch" type="button">SEARCH</button>
             </div>
-            <h1 class="founder-song">We have</h1>
+            <h1 class="founder-song">Search your song</h1>
           </div>
         </div>
       </section>
@@ -132,13 +132,13 @@
       </div>
     </script>
     <script id="template-search-page" type="text/x-handlebars-template">
-      <div class='song-container'>
+      <div class='song-container searching'>
         <h1>
           <span class='authorSize'>{{author}} - </span><span
             class='titleSize'
           >{{title}}</span>
         </h1>
-        <div class='music player'>
+        <div class='music-search player'>
           <audio>
             <source src='songs/{{filename}}' />
           </audio>

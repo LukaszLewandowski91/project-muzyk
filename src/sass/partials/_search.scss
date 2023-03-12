@@ -31,6 +31,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  margin-bottom: 70px;
 }
 
 .input-details {
@@ -41,7 +42,7 @@
     border: none;
     letter-spacing: 2px;
     margin-right: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
   }
 
   input[type='text'] {
@@ -67,6 +68,10 @@
   font-size: 30px;
   color: $color-white;
   font-weight: $font-normal;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.song-container h1 {
   text-align: center;
 }
