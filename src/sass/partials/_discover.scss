@@ -1,0 +1,19 @@
+.discover-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
+  margin: ($base-size * 3, 5) auto;
+  margin-top: 50px;
+  padding: 25px;
+  width: 100%;
+}
+
+.discover-song {
+  font-size: 30px;
+  color: $color-white;
+  font-weight: $font-normal;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 70px;
+}

@@ -101,7 +101,14 @@
         </div>
       </section>
       <section id="discover">
-        <div class="discover-wrapper container"></div>
+        <div class="discover-wrapper container">
+          <div class="container search">
+            <div class="search-input">
+              <h1 class="search-h1">Discover</h1>
+            </div>
+            <h1 class="discover-song">Give it a try!</h1>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -139,6 +146,28 @@
           >{{title}}</span>
         </h1>
         <div class='music-search player'>
+          <audio>
+            <source src='songs/{{filename}}' />
+          </audio>
+        </div>
+        <div class='categories-box'>
+
+          <p class='categories'>Categories:
+            {{categories}}
+          </p>
+
+          <p class='categories'>#{{ranking}} in the ranking</p>
+        </div>
+      </div>
+    </script>
+    <script id="template-discover-page" type="text/x-handlebars-template">
+      <div class='song-container searching'>
+        <h1>
+          <span class='authorSize'>{{author}} - </span><span
+            class='titleSize'
+          >{{title}}</span>
+        </h1>
+        <div class='music-discover player'>
           <audio>
             <source src='songs/{{filename}}' />
           </audio>

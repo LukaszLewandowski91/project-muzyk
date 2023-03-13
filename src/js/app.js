@@ -3,7 +3,25 @@ import HomePage from './components/HomePage.js';
 import AudioPlayer from './components/AudioPlayer.js';
 import Song from './components/Song.js';
 import SearchPage from './components/SearchPage.js';
+import DiscoverPage from './components/DiscoverPage.js';
 const app = {
+  initDiscover: function () {
+    const thisApp = this;
+
+    thisApp.discoverMusic = select.containerOf.musicDiscover;
+
+    const objectLength = thisApp.data.songs.length;
+
+    const randomSong = Math.floor(Math.random() * objectLength);
+
+    const song = thisApp.data.songs[randomSong];
+
+    const authorName = new Song(song);
+
+    new DiscoverPage(authorName.specifyData.id, authorName.specifyData);
+
+    new AudioPlayer(select.containerOf.musicDiscover);
+  },
   initSearch: function () {
     const thisApp = this;
 
@@ -40,7 +58,7 @@ const app = {
           const song = thisApp.data.songs[songId];
 
           const authorName = new Song(song);
-          console.log(authorName.specifyData.fullName);
+
           if (
             authorName.specifyData.fullName
               .toLowerCase()
@@ -137,7 +155,7 @@ const app = {
             thisApp.specifyData[songData]
           );
         }
-
+        thisApp.initDiscover();
         new AudioPlayer(select.containerOf.music);
       });
   },

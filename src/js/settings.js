@@ -2,6 +2,7 @@ export const select = {
   templateOf: {
     homePage: '#template-home-page',
     searchPage: '#template-search-page',
+    discoverPage: '#template-discover-page',
   },
   containerOf: {
     navs: '.main-nav',
@@ -12,6 +13,8 @@ export const select = {
     subscribe: '.container-subscribe',
     searchPage: '.search-wrapper',
     containerMusic: '.searching',
+    discoverPage: '.discover-wrapper',
+    musicDiscover: '.music-discover',
   },
   nav: {
     links: '.main-nav a',
@@ -48,5 +51,8 @@ export const templates = {
   ),
   searchPage: Handlebars.compile(
     document.querySelector(select.templateOf.searchPage).innerHTML
+  ),
+  discoverPage: Handlebars.compile(
+    document.querySelector(select.templateOf.discoverPage).innerHTML
   ),
 };

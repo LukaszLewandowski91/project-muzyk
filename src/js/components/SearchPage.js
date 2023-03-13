@@ -5,7 +5,8 @@ class SearchPage {
   constructor(id, data) {
     const thisSearch = this;
 
-    (thisSearch.id = id), (thisSearch.data = data);
+    thisSearch.id = id;
+    thisSearch.data = data;
 
     thisSearch.renderSearch();
   }
