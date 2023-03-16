@@ -1,7 +1,6 @@
 class Song {
   constructor(element) {
     const thisSong = this;
-
     thisSong.createData(element);
   }
   createData(element) {
@@ -21,7 +20,7 @@ class Song {
       authorName[i] =
         authorName[i].charAt(0).toUpperCase() + authorName[i].slice(1);
     }
-
+    
     thisSong.specifyData = {
       id: element.id,
       title: element.title,

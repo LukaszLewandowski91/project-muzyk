@@ -130,6 +130,7 @@ const app = {
     const thisApp = this;
 
     thisApp.data = {};
+    thisApp.typeOfMusic = {};
     const url = settings.db.url + '/' + settings.db.songs;
     thisApp.specifyData = {};
     fetch(url)
@@ -144,10 +145,18 @@ const app = {
         for (let songId in thisApp.data.songs) {
           const song = thisApp.data.songs[songId];
 
+          for (let type of song.categories){
+            if(!thisApp.typeOfMusic[type]){
+              thisApp.typeOfMusic[type] = 0
+            }
+          }
+          
           const authorName = new Song(song);
 
           thisApp.specifyData[songId] = authorName.specifyData;
         }
+
+        console.log('typy muzyki', thisApp.typeOfMusic)
 
         for (let songData in thisApp.specifyData) {
           new HomePage(
@@ -157,6 +166,8 @@ const app = {
         }
         thisApp.initDiscover();
         new AudioPlayer(select.containerOf.music);
+
+        
       });
   },
   init: function () {
