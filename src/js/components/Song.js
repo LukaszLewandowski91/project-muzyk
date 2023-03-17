@@ -1,6 +1,7 @@
 class Song {
   constructor(element) {
     const thisSong = this;
+
     thisSong.createData(element);
   }
   createData(element) {

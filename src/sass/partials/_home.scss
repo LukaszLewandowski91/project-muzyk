@@ -119,3 +119,19 @@
     text-align: right;
   }
 }
+
+.typeMusic {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.listMusic {
+  margin-bottom: 0;
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}

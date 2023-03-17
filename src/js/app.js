@@ -147,16 +147,16 @@ const app = {
 
           for (let type of song.categories){
             if(!thisApp.typeOfMusic[type]){
-              thisApp.typeOfMusic[type] = 0
+              thisApp.typeOfMusic[type] = 0;
             }
           }
           
           const authorName = new Song(song);
 
           thisApp.specifyData[songId] = authorName.specifyData;
-        }
-
-        console.log('typy muzyki', thisApp.typeOfMusic)
+        }        
+        
+        console.log(thisApp.typeOfMusic);
 
         for (let songData in thisApp.specifyData) {
           new HomePage(
@@ -167,8 +167,20 @@ const app = {
         thisApp.initDiscover();
         new AudioPlayer(select.containerOf.music);
 
+        const typeList = document.querySelector(select.list.typeOfMusic);
+
+        let allTypeHTML = '';
+        for (let tag in thisApp.typeOfMusic){
+          const typeLinkHTML = '<li><a class="linkType" href="#' + tag + '">' + tag + '</a></li>';
+          allTypeHTML += typeLinkHTML;
+          console.log(allTypeHTML);
+        }
+
+        typeList.innerHTML = allTypeHTML;
         
       });
+
+
   },
   init: function () {
     const thisApp = this;

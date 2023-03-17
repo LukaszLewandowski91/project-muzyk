@@ -27,6 +27,9 @@ export const select = {
     text: '.fragmentText',
     valueSong: '.founder-song',
   },
+  list: {
+    typeOfMusic: '.listMusic'
+  }
 };
 
 export const classNames = {
