@@ -3,6 +3,7 @@ export const select = {
     homePage: '#template-home-page',
     searchPage: '#template-search-page',
     discoverPage: '#template-discover-page',
+    typeMusic: '#template-type',
   },
   containerOf: {
     navs: '.main-nav',
@@ -22,18 +23,18 @@ export const select = {
   },
   song: {
     categories: '.categories',
-    type: '.typesOfMusic'
+    type: '.typesOfMusic',
   },
   button: {
     search: '.buttonSearch',
     text: '.fragmentText',
     valueSong: '.founder-song',
     linkFilter: '.listMusic',
-    allLinks: '.listMusic .linkType'
+    allLinks: '.listMusic .linkType',
   },
   list: {
-    typeOfMusic: '.listMusic'
-  }
+    typeOfMusic: '.listMusic',
+  },
 };
 
 export const classNames = {
@@ -41,11 +42,11 @@ export const classNames = {
     active: 'active',
   },
   links: {
-    active: 'activateFilter'
+    active: 'activateFilter',
   },
   song: {
-    disabled: 'disabled'
-  }
+    disabled: 'disabled',
+  },
 };
 
 export const settings = {
@@ -67,5 +68,8 @@ export const templates = {
   ),
   discoverPage: Handlebars.compile(
     document.querySelector(select.templateOf.discoverPage).innerHTML
+  ),
+  typeMusic: Handlebars.compile(
+    document.querySelector(select.templateOf.typeMusic).innerHTML
   ),
 };

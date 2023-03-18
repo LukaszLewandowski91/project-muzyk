@@ -54,9 +54,9 @@
     <div id="pages">
       <section id="home">
         <div class="typeMusic">
-          <h2>Categories: </h2>
+          <h2>Categories:</h2>
           <ul class="listMusic"></ul>
-      </div>
+        </div>
         <div class="home-wrapper container"></div>
         <div class="container subscribe">
           <div class="subscribe-container">
@@ -120,6 +120,11 @@
       <h3 class="h3">All rights reserved</h3>
     </div>
 
+    <script id="template-type" type="text/x-handlebars-template">
+      {{#each types}}
+        <li><a class='linkType' href='#{{type}}'>{{type}}</a></li>'
+      {{/each}}
+    </script>
     <script id="template-home-page" type="text/x-handlebars-template">
       <div class='song-container filterMusic'>
         <h1>

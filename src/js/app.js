@@ -1,4 +1,4 @@
-import { classNames, select, settings } from './settings.js';
+import { classNames, select, settings, templates } from './settings.js';
 import HomePage from './components/HomePage.js';
 import AudioPlayer from './components/AudioPlayer.js';
 import Song from './components/Song.js';
@@ -9,32 +9,37 @@ const app = {
     const thisApp = this;
 
     thisApp.filterLinks = document.querySelector(select.button.linkFilter);
-    thisApp.filterLinks.allLinks = thisApp.filterLinks.querySelectorAll(select.button.allLinks);
-    thisApp.allSongs = document.querySelectorAll(select.containerOf.containerHomeMusic);
+    thisApp.filterLinks.allLinks = thisApp.filterLinks.querySelectorAll(
+      select.button.allLinks
+    );
+    thisApp.allSongs = document.querySelectorAll(
+      select.containerOf.containerHomeMusic
+    );
 
     console.log(thisApp.allSongs);
-    
 
-    thisApp.filterLinks.addEventListener('click', function(event){
+    thisApp.filterLinks.addEventListener('click', function (event) {
       event.preventDefault();
 
       const clicedLink = event.target;
-      const filterType = clicedLink.getAttribute('href').replace('#','');
+      const filterType = clicedLink.getAttribute('href').replace('#', '');
 
-      for(let link of thisApp.filterLinks.allLinks){
-        if(link === clicedLink){
+      for (let link of thisApp.filterLinks.allLinks) {
+        if (link === clicedLink) {
           clicedLink.classList.toggle(classNames.links.active);
-          if(clicedLink.classList.contains(classNames.links.active)){
-            for (let song of thisApp.allSongs){
-              const categoriesMusic = song.querySelector(select.song.type).innerHTML;
-              if(!categoriesMusic.includes(filterType)){
+          if (clicedLink.classList.contains(classNames.links.active)) {
+            for (let song of thisApp.allSongs) {
+              const categoriesMusic = song.querySelector(
+                select.song.type
+              ).innerHTML;
+              if (!categoriesMusic.includes(filterType)) {
                 song.classList.add(classNames.song.disabled);
               } else {
                 song.classList.remove(classNames.song.disabled);
               }
             }
           } else {
-            for (let song of thisApp.allSongs){
+            for (let song of thisApp.allSongs) {
               song.classList.remove(classNames.song.disabled);
             }
           }
@@ -43,7 +48,6 @@ const app = {
         }
       }
     });
-
   },
   initDiscover: function () {
     const thisApp = this;
@@ -185,17 +189,17 @@ const app = {
         for (let songId in thisApp.data.songs) {
           const song = thisApp.data.songs[songId];
 
-          for (let type of song.categories){
-            if(!thisApp.typeOfMusic[type]){
+          for (let type of song.categories) {
+            if (!thisApp.typeOfMusic[type]) {
               thisApp.typeOfMusic[type] = 0;
             }
           }
-          
+
           const authorName = new Song(song);
 
           thisApp.specifyData[songId] = authorName.specifyData;
-        }        
-        
+        }
+
         console.log(thisApp.typeOfMusic);
 
         for (let songData in thisApp.specifyData) {
@@ -209,17 +213,18 @@ const app = {
 
         const typeList = document.querySelector(select.list.typeOfMusic);
 
-        let allTypeHTML = '';
-        for (let tag in thisApp.typeOfMusic){
-          const typeLinkHTML = '<li><a class="linkType" href="#' + tag + '">' + tag + '</a></li>';
-          allTypeHTML += typeLinkHTML;
+        thisApp.allTypeData = { types: [] };
+
+        for (let type in thisApp.typeOfMusic) {
+          thisApp.allTypeData.types.push({
+            type: type,
+            count: thisApp.typeOfMusic[type],
+          });
         }
 
-        typeList.innerHTML = allTypeHTML;
+        typeList.innerHTML = templates.typeMusic(thisApp.allTypeData);
         thisApp.filterHome();
       });
-
-
   },
   init: function () {
     const thisApp = this;
@@ -227,7 +232,6 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initSearch();
-    
   },
 };
 
