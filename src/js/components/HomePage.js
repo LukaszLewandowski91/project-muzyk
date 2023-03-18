@@ -9,6 +9,7 @@ class HomePage {
     thisHome.data = data;
 
     thisHome.renderHome();
+
   }
   renderHome() {
     const thisHome = this;

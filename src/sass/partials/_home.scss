@@ -128,10 +128,35 @@
   margin-top: 20px;
 }
 
+.typeMusic h2 {
+  font-size: $base-size * 2;
+  letter-spacing: 5px;
+  color: $color-white;
+  font-weight: $font-semibold;
+}
+
 .listMusic {
   margin-bottom: 0;
+
   li {
     display: inline-block;
     margin: 0 10px;
   }
+}
+
+.listMusic li a {
+  text-decoration: none;
+  color: $color-white;
+  font-size: $base-size * 2;
+  font-weight: $font-normal;
+  letter-spacing: 4px;
+}
+
+.listMusic li a.activateFilter {
+  color: $color-red;
+  font-weight: $font-bold;
+}
+
+.filterMusic.disabled {
+  display: none;
 }

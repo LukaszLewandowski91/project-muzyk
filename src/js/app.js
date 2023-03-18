@@ -5,6 +5,46 @@ import Song from './components/Song.js';
 import SearchPage from './components/SearchPage.js';
 import DiscoverPage from './components/DiscoverPage.js';
 const app = {
+  filterHome: function () {
+    const thisApp = this;
+
+    thisApp.filterLinks = document.querySelector(select.button.linkFilter);
+    thisApp.filterLinks.allLinks = thisApp.filterLinks.querySelectorAll(select.button.allLinks);
+    thisApp.allSongs = document.querySelectorAll(select.containerOf.containerHomeMusic);
+
+    console.log(thisApp.allSongs);
+    
+
+    thisApp.filterLinks.addEventListener('click', function(event){
+      event.preventDefault();
+
+      const clicedLink = event.target;
+      const filterType = clicedLink.getAttribute('href').replace('#','');
+
+      for(let link of thisApp.filterLinks.allLinks){
+        if(link === clicedLink){
+          clicedLink.classList.toggle(classNames.links.active);
+          if(clicedLink.classList.contains(classNames.links.active)){
+            for (let song of thisApp.allSongs){
+              const categoriesMusic = song.querySelector(select.song.type).innerHTML;
+              if(!categoriesMusic.includes(filterType)){
+                song.classList.add(classNames.song.disabled);
+              } else {
+                song.classList.remove(classNames.song.disabled);
+              }
+            }
+          } else {
+            for (let song of thisApp.allSongs){
+              song.classList.remove(classNames.song.disabled);
+            }
+          }
+        } else {
+          link.classList.remove(classNames.links.active);
+        }
+      }
+    });
+
+  },
   initDiscover: function () {
     const thisApp = this;
 
@@ -173,11 +213,10 @@ const app = {
         for (let tag in thisApp.typeOfMusic){
           const typeLinkHTML = '<li><a class="linkType" href="#' + tag + '">' + tag + '</a></li>';
           allTypeHTML += typeLinkHTML;
-          console.log(allTypeHTML);
         }
 
         typeList.innerHTML = allTypeHTML;
-        
+        thisApp.filterHome();
       });
 
 
@@ -188,6 +227,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initSearch();
+    
   },
 };
 

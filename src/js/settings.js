@@ -13,6 +13,7 @@ export const select = {
     subscribe: '.container-subscribe',
     searchPage: '.search-wrapper',
     containerMusic: '.searching',
+    containerHomeMusic: '.filterMusic',
     discoverPage: '.discover-wrapper',
     musicDiscover: '.music-discover',
   },
@@ -21,11 +22,14 @@ export const select = {
   },
   song: {
     categories: '.categories',
+    type: '.typesOfMusic'
   },
   button: {
     search: '.buttonSearch',
     text: '.fragmentText',
     valueSong: '.founder-song',
+    linkFilter: '.listMusic',
+    allLinks: '.listMusic .linkType'
   },
   list: {
     typeOfMusic: '.listMusic'
@@ -36,6 +40,12 @@ export const classNames = {
   navs: {
     active: 'active',
   },
+  links: {
+    active: 'activateFilter'
+  },
+  song: {
+    disabled: 'disabled'
+  }
 };
 
 export const settings = {
