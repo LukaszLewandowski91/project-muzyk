@@ -165,18 +165,32 @@
   .typeMusic {
     text-align: center;
     display: block;
+    border: 2px solid $color-red;
 
     li {
       display: block;
+      visibility: hidden;
+      opacity: 0;
+      display: none;
+      transition: all 0.5s ease;
     }
   }
+
+  .typeMusic:hover li {
+    visibility: visible;
+    display: block;
+    opacity: 1;
+  }
+
   .image-artist {
     display: none;
   }
+
   .btn {
     font-size: 20px;
     letter-spacing: 5px;
   }
+
   .splash .album-description {
     width: 100%;
     display: flex;
