@@ -72,7 +72,7 @@
                   >JOIN NOW</a
                 >
                 <div class="image">
-                  <img src="images/artist.jpg" alt="" />
+                  <img class="image-artist" src="images/artist.jpg" alt="" />
                   <h1 class="subsribe-firstname">Dean</h1>
                   <div class="lastname">
                     <h1 class="subsribe-lastname">
@@ -141,8 +141,8 @@
             class='titleSize'
           >{{title}}</span>
         </h1>
-        <div class='music player'>
-          <audio>
+        <div class='music player' id='musicPlayer'>
+          <audio id='my-audio'>
             <source src='songs/{{filename}}' />
           </audio>
         </div>
@@ -163,7 +163,7 @@
             class='titleSize'
           >{{title}}</span>
         </h1>
-        <div class='music-search player'>
+        <div class='music-search player' id='musicPlayer'>
           <audio>
             <source src='songs/{{filename}}' />
           </audio>
@@ -179,13 +179,13 @@
       </div>
     </script>
     <script id="template-discover-page" type="text/x-handlebars-template">
-      <div class='song-container searching'>
+      <div class='song-container discoverMusic'>
         <h1>
           <span class='authorSize'>{{author}} - </span><span
             class='titleSize'
           >{{title}}</span>
         </h1>
-        <div class='music-discover player'>
+        <div class='music-discover player' id='musicPlayer'>
           <audio>
             <source src='songs/{{filename}}' />
           </audio>

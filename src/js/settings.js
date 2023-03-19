@@ -15,6 +15,7 @@ export const select = {
     subscribe: '.container-subscribe',
     searchPage: '.search-wrapper',
     containerMusic: '.searching',
+    containerDiscover: '.discoverMusic',
     containerHomeMusic: '.filterMusic',
     discoverPage: '.discover-wrapper',
     musicDiscover: '.music-discover',
@@ -33,6 +34,7 @@ export const select = {
     valueSong: '.founder-song',
     linkFilter: '.listMusic',
     allLinks: '.listMusic .linkType',
+    holder: '.holder',
   },
   list: {
     typeOfMusic: '.listMusic',
@@ -49,6 +51,7 @@ export const classNames = {
   song: {
     disabled: 'disabled',
   },
+  buttonPlay: 'play-pause-btn__icon',
 };
 
 export const settings = {

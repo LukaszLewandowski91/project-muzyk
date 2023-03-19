@@ -5,6 +5,35 @@ import Song from './components/Song.js';
 import SearchPage from './components/SearchPage.js';
 import DiscoverPage from './components/DiscoverPage.js';
 const app = {
+  playingSongs: function () {
+    const thisApp = this;
+
+    thisApp.playButton = document.querySelectorAll(select.button.holder);
+
+    for (let oneButton of thisApp.playButton) {
+      oneButton.addEventListener('click', function (event) {
+        const clickedElement = event.target;
+        if (clickedElement.classList.contains(classNames.buttonPlay)) {
+          const parentButton = oneButton.parentNode.parentNode;
+          const categories = parentButton.querySelector(
+            select.song.type
+          ).innerHTML;
+
+          let newCategories = categories.replaceAll(/\s+/g, '');
+          newCategories = newCategories.replace('Categories:', '');
+          const newCategoriesArray = newCategories.split(',');
+          console.log(thisApp.typeOfMusic);
+          for (let category of newCategoriesArray) {
+            thisApp.typeOfMusic[category]++;
+            for (let type in thisApp.typeOfMusic) {
+              console.log(type, thisApp.typeOfMusic[type]);
+            }
+          }
+          thisApp.initDiscover();
+        }
+      });
+    }
+  },
   filterHome: function () {
     const thisApp = this;
 
@@ -54,15 +83,68 @@ const app = {
 
     thisApp.discoverMusic = select.containerOf.musicDiscover;
 
-    const objectLength = thisApp.data.songs.length;
+    let maxValueCategory = 0;
+    let countCategory = 0;
+    const discoverSong = [];
+    const bestCategory = [];
 
-    const randomSong = Math.floor(Math.random() * objectLength);
+    for (let type in thisApp.typeOfMusic) {
+      const valueCategory = parseInt(thisApp.typeOfMusic[type]);
+      if (valueCategory > 0) {
+        if (valueCategory > maxValueCategory) {
+          bestCategory.splice(0, bestCategory.length);
+          bestCategory.push(type);
+          countCategory++;
+          maxValueCategory = valueCategory;
+        } else if (valueCategory === maxValueCategory) {
+          bestCategory.push(type);
+          countCategory++;
+        }
+      }
+    }
 
-    const song = thisApp.data.songs[randomSong];
+    if (countCategory > 0) {
+      for (let songId in thisApp.data.songs) {
+        const song = thisApp.data.songs[songId];
+        for (let type of bestCategory) {
+          if (song.categories.includes(type)) {
+            discoverSong.push(songId);
+            break;
+          }
+        }
+      }
+      thisApp.containerSong = document.querySelectorAll(
+        select.containerOf.containerDiscover
+      );
+      if (
+        typeof thisApp.containerSong != 'undefined' &&
+        thisApp.containerSong != null
+      ) {
+        for (var i = 0; i < thisApp.containerSong.length; i++) {
+          thisApp.containerSong[i].parentNode.removeChild(
+            thisApp.containerSong[i]
+          );
+        }
+      }
 
-    const authorName = new Song(song);
+      const objectLength = discoverSong.length;
+      const random = Math.floor(Math.random() * objectLength);
+      const randomSong = discoverSong[random];
+      const song = thisApp.data.songs[randomSong];
 
-    new DiscoverPage(authorName.specifyData.id, authorName.specifyData);
+      const authorName = new Song(song);
+      new DiscoverPage(authorName.specifyData.id, authorName.specifyData);
+    } else {
+      const objectLength = thisApp.data.songs.length;
+
+      const randomSong = Math.floor(Math.random() * objectLength);
+
+      const song = thisApp.data.songs[randomSong];
+
+      const authorName = new Song(song);
+
+      new DiscoverPage(authorName.specifyData.id, authorName.specifyData);
+    }
 
     new AudioPlayer(select.containerOf.musicDiscover);
   },
@@ -152,26 +234,6 @@ const app = {
         }
       }
 
-      // if (fragmentSearch == '') {
-      //   alert('Wprowadź wartość do wyszukania');
-      // } else {
-      //   let valueSong = 0;
-
-      //   for (let songId in thisApp.data.songs) {
-      //     const song = thisApp.data.songs[songId];
-
-      //     const authorName = new Song(song);
-
-      //     if (
-      //       authorName.specifyData.fullName
-      //         .toLowerCase()
-      //         .includes(fragmentSearch)
-      //     ) {
-      //       new SearchPage(authorName.specifyData.id, authorName.specifyData);
-      //       valueSong++;
-      //     }
-      //   }
-
       if (valueSong == 0) {
         thisApp.valueSong.innerHTML = 'We don\'t have any song :(';
       } else if (valueSong == 1) {
@@ -182,7 +244,7 @@ const app = {
       }
 
       new AudioPlayer(select.containerOf.musicOnSearch);
-      //}
+      thisApp.playingSongs();
     });
   },
   initPages: function () {
@@ -209,6 +271,9 @@ const app = {
         event.preventDefault();
 
         const id = clickedElement.getAttribute('href').replace('#', '');
+        if (id == 'Discover') {
+          thisApp.initDiscover();
+        }
         thisApp.activatePage(id);
 
         window.location.hash = '#/' + id;
@@ -247,7 +312,6 @@ const app = {
 
         for (let songId in thisApp.data.songs) {
           const song = thisApp.data.songs[songId];
-
           for (let type of song.categories) {
             if (!thisApp.typeOfMusic[type]) {
               thisApp.typeOfMusic[type] = 0;
@@ -289,6 +353,7 @@ const app = {
         );
         selectList.innerHTML = templates.selectCategories(thisApp.allTypeData);
         thisApp.initSearch();
+        thisApp.playingSongs();
       });
   },
   init: function () {
