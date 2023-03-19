@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 700px;
+  max-width: 900px;
   margin: ($base-size * 3, 5) auto;
   margin-top: 50px;
   padding: 25px;
@@ -31,7 +31,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
 }
 
 .input-details {
@@ -41,8 +41,9 @@
     color: $color-grey;
     border: none;
     letter-spacing: 2px;
+    margin: 0 auto;
     margin-right: 20px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 
   input[type='text'] {
@@ -50,18 +51,40 @@
     margin-right: 20px;
     height: 50px;
     border-radius: 10px;
+    font-size: $base-size * 1.5;
+    font-weight: $font-semibold;
+    color: $color-black;
+    letter-spacing: 4px;
+    padding-left: 10px;
   }
+}
 
-  button {
-    height: 50px;
-    color: $color-white;
-    background-color: $color-red;
-    font-size: 20px;
-    font-weight: $font-normal;
-    letter-spacing: 2px;
-    width: 140px;
-    border-radius: 10px;
-  }
+.selectCategories {
+  width: 400px;
+  margin-right: 20px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: $base-size * 1.5;
+  font-weight: $font-semibold;
+  color: $color-black;
+  letter-spacing: 4px;
+  padding-left: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  height: 50px;
+  color: $color-white;
+  background-color: $color-red;
+  font-size: 20px;
+  font-weight: $font-normal;
+  letter-spacing: 2px;
+  width: 140px;
+  border-radius: 10px;
 }
 
 .founder-song {

@@ -98,6 +98,10 @@
             <div class="input-details">
               <p>Name</p>
               <input class="fragmentText" type="text" />
+              <p>Categories</p>
+              <select class="selectCategories"></select>
+            </div>
+            <div class="buttonContainer">
               <button class="my-btn buttonSearch" type="button">SEARCH</button>
             </div>
             <h1 class="founder-song">Search your song</h1>
@@ -119,7 +123,12 @@
     <div class="footer">
       <h3 class="h3">All rights reserved</h3>
     </div>
-
+    <script id="template-select" type="text/x-handlebars-template">
+      <option value='' selected disabled></option>
+      {{#each types}}
+        <option value='{{type}}'>{{type}}</option>
+      {{/each}}
+    </script>
     <script id="template-type" type="text/x-handlebars-template">
       {{#each types}}
         <li><a class='linkType' href='#{{type}}'>{{type}}</a></li>'

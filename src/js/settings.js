@@ -4,6 +4,7 @@ export const select = {
     searchPage: '#template-search-page',
     discoverPage: '#template-discover-page',
     typeMusic: '#template-type',
+    selectType: '#template-select',
   },
   containerOf: {
     navs: '.main-nav',
@@ -17,6 +18,7 @@ export const select = {
     containerHomeMusic: '.filterMusic',
     discoverPage: '.discover-wrapper',
     musicDiscover: '.music-discover',
+    optionCategories: '.selectCategories',
   },
   nav: {
     links: '.main-nav a',
@@ -71,5 +73,8 @@ export const templates = {
   ),
   typeMusic: Handlebars.compile(
     document.querySelector(select.templateOf.typeMusic).innerHTML
+  ),
+  selectCategories: Handlebars.compile(
+    document.querySelector(select.templateOf.selectType).innerHTML
   ),
 };

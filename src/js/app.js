@@ -72,6 +72,9 @@ const app = {
     thisApp.buttonSearch = document.querySelector(select.button.search);
     thisApp.inputText = document.querySelector(select.button.text);
     thisApp.valueSong = document.querySelector(select.button.valueSong);
+    thisApp.optionCategories = document.querySelector(
+      select.containerOf.optionCategories
+    );
 
     thisApp.buttonSearch.addEventListener('click', function (event) {
       event.preventDefault();
@@ -92,12 +95,20 @@ const app = {
       }
 
       const fragmentSearch = thisApp.inputText.value.toLowerCase();
+      const selecetCategories = thisApp.optionCategories.value;
 
-      if (fragmentSearch == '') {
-        alert('Wprowadź wartość do wyszukania');
-      } else {
-        let valueSong = 0;
+      console.log(fragmentSearch, selecetCategories);
+      let valueSong = 0;
+      if (fragmentSearch == '' && selecetCategories == '') {
+        for (let songId in thisApp.data.songs) {
+          const song = thisApp.data.songs[songId];
 
+          const authorName = new Song(song);
+
+          new SearchPage(authorName.specifyData.id, authorName.specifyData);
+          valueSong++;
+        }
+      } else if (fragmentSearch != '' && selecetCategories == '') {
         for (let songId in thisApp.data.songs) {
           const song = thisApp.data.songs[songId];
 
@@ -112,18 +123,66 @@ const app = {
             valueSong++;
           }
         }
+      } else if (fragmentSearch == '' && selecetCategories != '') {
+        for (let songId in thisApp.data.songs) {
+          const song = thisApp.data.songs[songId];
 
-        if (valueSong == 0) {
-          thisApp.valueSong.innerHTML = 'We don\'t have any song :(';
-        } else if (valueSong == 1) {
-          thisApp.valueSong.innerHTML = 'We have found 1 song...';
-        } else {
-          thisApp.valueSong.innerHTML =
-            'We have found ' + valueSong + ' songs...';
+          const authorName = new Song(song);
+
+          if (authorName.specifyData.categories.includes(selecetCategories)) {
+            new SearchPage(authorName.specifyData.id, authorName.specifyData);
+            valueSong++;
+          }
         }
+      } else if (fragmentSearch != '' && selecetCategories != '') {
+        for (let songId in thisApp.data.songs) {
+          const song = thisApp.data.songs[songId];
 
-        new AudioPlayer(select.containerOf.musicOnSearch);
+          const authorName = new Song(song);
+
+          if (
+            authorName.specifyData.categories.includes(selecetCategories) &&
+            authorName.specifyData.fullName
+              .toLowerCase()
+              .includes(fragmentSearch)
+          ) {
+            new SearchPage(authorName.specifyData.id, authorName.specifyData);
+            valueSong++;
+          }
+        }
       }
+
+      // if (fragmentSearch == '') {
+      //   alert('Wprowadź wartość do wyszukania');
+      // } else {
+      //   let valueSong = 0;
+
+      //   for (let songId in thisApp.data.songs) {
+      //     const song = thisApp.data.songs[songId];
+
+      //     const authorName = new Song(song);
+
+      //     if (
+      //       authorName.specifyData.fullName
+      //         .toLowerCase()
+      //         .includes(fragmentSearch)
+      //     ) {
+      //       new SearchPage(authorName.specifyData.id, authorName.specifyData);
+      //       valueSong++;
+      //     }
+      //   }
+
+      if (valueSong == 0) {
+        thisApp.valueSong.innerHTML = 'We don\'t have any song :(';
+      } else if (valueSong == 1) {
+        thisApp.valueSong.innerHTML = 'We have found 1 song...';
+      } else {
+        thisApp.valueSong.innerHTML =
+          'We have found ' + valueSong + ' songs...';
+      }
+
+      new AudioPlayer(select.containerOf.musicOnSearch);
+      //}
     });
   },
   initPages: function () {
@@ -224,6 +283,12 @@ const app = {
 
         typeList.innerHTML = templates.typeMusic(thisApp.allTypeData);
         thisApp.filterHome();
+
+        const selectList = document.querySelector(
+          select.containerOf.optionCategories
+        );
+        selectList.innerHTML = templates.selectCategories(thisApp.allTypeData);
+        thisApp.initSearch();
       });
   },
   init: function () {
@@ -231,7 +296,6 @@ const app = {
     console.log('*** App starting ***');
     thisApp.initPages();
     thisApp.initData();
-    thisApp.initSearch();
   },
 };
 
